@@ -438,3 +438,33 @@ ul.lang-list li a:hover {color: #fdc073;}
 .form-contact input[type=submit], textarea {
 	font-size: 16px;
 }
+
+.flash {padding: 10px;}
+.flash.success {
+         border: 1px solid #21DB56;
+         background: #AEFFC5;
+}
+.flash.error {
+         border: 1px solid #FF4343;
+         background: #FF9C9C;
+}
+
+ul.list-posts {
+	list-style: none;
+	margin: 0;
+	padding 0;
+	max-width: 600px;
+}
+ul.list-posts li {
+	margin: 20px 0 0 0;
+	border: 1px solid #eee;
+}
+ul.list-posts .title {
+	margin: 0;
+	padding: 5px;
+	background: #eee;
+}
+ul.list-posts .annonce {
+	margin: 0;
+	padding: 10px 5px 10px 5px;
+}
