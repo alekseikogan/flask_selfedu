@@ -4,7 +4,6 @@ html, body {
 	padding: 0;
 	height: 100%;
 	width: 100%;
-	color: #444;
 }
 
 a {
@@ -91,9 +90,10 @@ ul.mainmenu {
 	margin: 0;
 	padding: 0;
 	height: 60px;
-	color: #fdc073;
+	color: #060606;
 	font-size: 20px;
 	overflow: hidden;
+	background: #0bb7de;
 }
 ul.mainmenu li {
 	float: left;
@@ -103,11 +103,11 @@ ul.mainmenu li.logo {margin: 0;}
 ul.mainmenu li.last {float: right;}
 
 ul.mainmenu li a {
-	color: #fdc073;
+	color: #010101;
 	text-decoration: none;
 }
 ul.mainmenu li a:hover {
-	color: #FDA83D;
+	color: #040404;
 }
 
 .panelitems {
@@ -462,7 +462,7 @@ ul.list-posts li {
 ul.list-posts .title {
 	margin: 0;
 	padding: 5px;
-	background: #eee;
+	background: rgb(225, 244, 255);
 }
 ul.list-posts .annonce {
 	margin: 0;
