@@ -22,13 +22,13 @@ class FDataBase:
             print("Ошибка чтения из БД")
         return []
 
-    def addPost(self, title, text, url):
+    def addCar(self, title, text, url):
         try:
             self.__cur.execute(
                 f"SELECT COUNT() as 'count' FROM posts WHERE url LIKE '{url}'")
             res = self.__cur.fetchone()
             if res['count'] > 0:
-                print('Такая статья уже существует!')
+                print('Такой авто уже существует!')
                 return False
 
             base = url_for('static', filename='images_html')
@@ -39,12 +39,12 @@ class FDataBase:
                                (title, text, url, tm))
             self.__db.commit()
         except sqlite3.Error as e:
-            print("Ошибка добавления статьи в БД "+str(e))
+            print("Ошибка добавления авто в БД "+str(e))
             return False
 
         return True
 
-    def getPost(self, alias):
+    def getCar(self, alias):
         try:
             self.__cur.execute(
                 f"SELECT title, text FROM posts WHERE url LIKE '{alias}' LIMIT 1")
@@ -52,17 +52,34 @@ class FDataBase:
             if res:
                 return res
         except sqlite3.Error as e:
-            print("Ошибка получения статьи из БД " + str(e))
+            print("Ошибка получения авто из БД " + str(e))
 
         return (False, False)
 
-    def getPostsAnonce(self):
+    def getCarsAnonce(self):
         try:
             self.__cur.execute(
                 f"SELECT id, title, text, url FROM posts ORDER BY time DESC")
             res = self.__cur.fetchall()
             if res: return res
         except sqlite3.Error as e:
-            print("Ошибка получения статьи из БД "+str(e))
+            print("Ошибка получения авто из БД "+str(e))
 
         return []
+
+    def addUser(self, name, email, hpsw):
+        try:
+            self.__cur.execute(f"SELECT COUNT() as `count` FROM users WHERE email LIKE '{email}'")
+            res = self.__cur.fetchone()
+            if res['count'] > 0:
+                print("Пользователь с таким email уже существует")
+                return False
+
+            tm = math.floor(time.time())
+            self.__cur.execute("INSERT INTO users VALUES(NULL, ?, ?, ?, ?)", (name, email, hpsw, tm))
+            self.__db.commit()
+        except sqlite3.Error as e:
+            print("Ошибка добавления пользователя в БД "+str(e))
+            return False
+
+        return True
