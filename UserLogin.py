@@ -1,5 +1,3 @@
-import sqlite3
-
 from flask import url_for
 from flask_login import UserMixin
 
@@ -16,12 +14,15 @@ class UserLogin(UserMixin):
         return self
 
     def get_id(self):
+        """Получение id пользователя"""
         return str(self.__user['id'])
 
     def getName(self):
+        """Получение имени пользователя"""
         return self.__user['name'] if self.__user else "Без имени"
 
     def getEmail(self):
+        """Получение email пользователя"""
         return self.__user['email'] if self.__user else "Без email"
 
     def getAvatar(self, app):
@@ -40,9 +41,8 @@ class UserLogin(UserMixin):
         return img
 
     def verifyExt(self, filename):
-        """Проверка что файл расширения PNG"""
+        """Проверка что фото расширения .png"""
         ext = filename.rsplit('.', 1)[1]
         if ext == "png" or ext == "PNG":
             return True
         return False
-

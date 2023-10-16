@@ -8,10 +8,12 @@ from flask import url_for
 
 class FDataBase:
     def __init__(self, db):
+        """Создание БД"""
         self.__db = db
         self.__cur = db.cursor()
 
     def getMenu(self):
+        """Получение меню для шапки"""
         sql = '''SELECT * FROM mainmenu'''
         try:
             self.__cur.execute(sql)
@@ -23,6 +25,7 @@ class FDataBase:
         return []
 
     def addCar(self, title, text, url):
+        """Добавлене авто в БД"""
         try:
             self.__cur.execute(
                 f"SELECT COUNT() as 'count' FROM posts WHERE url LIKE '{url}'")
@@ -45,6 +48,7 @@ class FDataBase:
         return True
 
     def getCar(self, alias):
+        """Получение объекта авто"""
         try:
             self.__cur.execute(
                 f"SELECT title, text FROM posts WHERE url LIKE '{alias}' LIMIT 1")
@@ -59,6 +63,7 @@ class FDataBase:
         return (False, False)
 
     def getCarsAnonce(self):
+        """Получение свежих объектов авто для главной страницы"""
         try:
             self.__cur.execute(
                 f"SELECT id, title, text, url FROM posts ORDER BY time DESC")
@@ -70,6 +75,7 @@ class FDataBase:
         return []
 
     def addUser(self, name, email, hpsw):
+        """Добавление объекта пользователь в БД"""
         try:
             self.__cur.execute(f"SELECT COUNT() as `count` FROM users WHERE email LIKE '{email}'")
             res = self.__cur.fetchone()
@@ -89,6 +95,7 @@ class FDataBase:
         return True
 
     def getUser(self, user_id):
+        """Получение объекта пользователь"""
         try:
             self.__cur.execute(f"SELECT * FROM users WHERE id = {user_id} LIMIT 1")
             res = self.__cur.fetchone()
@@ -103,6 +110,7 @@ class FDataBase:
         return False
 
     def getUserByEmail(self, email):
+        """Поиск пользователя по email"""
         try:
             self.__cur.execute(f"SELECT * FROM users WHERE email = '{email}' LIMIT 1")
             res = self.__cur.fetchone()
@@ -117,6 +125,7 @@ class FDataBase:
         return False
 
     def updateUserAvatar(self, avatar, user_id):
+        """Обновление аватара пользователя"""
         if not avatar:
             return False
 

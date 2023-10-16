@@ -2,8 +2,8 @@ import datetime
 import os
 import sqlite3
 
-from flask import (Flask, abort, flash, g, redirect, render_template, request,
-                   session, url_for, make_response)
+from flask import (Flask, abort, flash, g, make_response, redirect,
+                   render_template, request, session, url_for)
 from flask_login import (LoginManager, current_user, login_required,
                          login_user, logout_user)
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -179,6 +179,7 @@ def register():
 @app.route('/profile')
 @login_required
 def profile():
+    """Профиль пользователя"""
     return render_template(
         'profile.html',
         menu=dbase.getMenu(),
@@ -188,6 +189,7 @@ def profile():
 @app.route('/userava')
 @login_required
 def userava():
+    """Получение объекта фото пользователя"""
     img = current_user.getAvatar(app)
     if not img:
         return ''
@@ -200,6 +202,7 @@ def userava():
 @app.route('/upload')
 @login_required
 def upload():
+    """Загрузка фотографии профиля пользователя"""
     if request.method == 'POST':
         file = request.files['file']
         if file and current_user.veryfyExt(file.filename):
