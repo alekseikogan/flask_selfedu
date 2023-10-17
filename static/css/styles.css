@@ -448,6 +448,14 @@ ul.lang-list li a:hover {color: #fdc073;}
          border: 1px solid #FF4343;
          background: #FF9C9C;
 }
+.form-contact .invalid {
+	display: inline-block;
+	background: #FF9898;
+}
+.form-contact .invalid-feedback {
+	color: #CC0000;
+}
+
 
 ul.list-posts {
 	list-style: none;
