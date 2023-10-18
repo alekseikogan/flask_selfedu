@@ -17,6 +17,7 @@
         {% for p in menu %}
         <li><a href="{{p.url}}">{{p.title}}</a></li>
         {% endfor %}
+        <li><a href="{{ url_for('admin.index') }}">Админ-панель</a></p></li>
     </ul>
     {% endblock mainmenu -%}
 <div class="clear"></div>
